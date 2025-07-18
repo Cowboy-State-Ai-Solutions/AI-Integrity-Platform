@@ -1,0 +1,157 @@
+# Multi-stage Dockerfile for TheoTech Moral AI Framework
+
+# Base Python image
+FROM python:3.11-slim as base
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create non-root user
+RUN groupadd -r theotech && useradd -r -g theotech theotech
+
+# Set working directory
+WORKDIR /app
+
+# Development stage
+FROM base as development
+
+# Install development dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    vim \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements
+COPY requirements.txt requirements-dev.txt ./
+
+# Install Python dependencies
+RUN pip install --upgrade pip && \
+    pip install -r requirements-dev.txt
+
+# Copy source code
+COPY . .
+
+# Change ownership to non-root user
+RUN chown -R theotech:theotech /app
+
+# Switch to non-root user
+USER theotech
+
+# Expose development port
+EXPOSE 8000
+
+# Development command
+CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+# Production build stage
+FROM base as builder
+
+# Copy requirements
+COPY requirements.txt ./
+
+# Install build dependencies and Python packages
+RUN pip install --upgrade pip && \
+    pip install --user --no-warn-script-location -r requirements.txt
+
+# Production stage
+FROM base as production
+
+# Copy Python packages from builder
+COPY --from=builder /root/.local /home/theotech/.local
+
+# Create necessary directories
+RUN mkdir -p /app/logs /app/tmp && \
+    chown -R theotech:theotech /app
+
+# Copy application code
+COPY --chown=theotech:theotech src/ /app/src/
+COPY --chown=theotech:theotech database/ /app/database/
+COPY --chown=theotech:theotech scripts/ /app/scripts/
+COPY --chown=theotech:theotech pyproject.toml /app/
+
+# Copy entrypoint script
+COPY --chown=theotech:theotech scripts/entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+# Switch to non-root user
+USER theotech
+
+# Update PATH
+ENV PATH=/home/theotech/.local/bin:$PATH
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Expose port
+EXPOSE 8000
+
+# Use entrypoint script
+ENTRYPOINT ["/app/entrypoint.sh"]
+
+# Default command
+CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
+
+# Testing stage
+FROM development as testing
+
+# Install additional testing dependencies
+RUN pip install pytest pytest-cov pytest-asyncio pytest-mock
+
+# Copy test files
+COPY tests/ /app/tests/
+
+# Run tests
+CMD ["pytest", "tests/", "-v", "--cov=src", "--cov-report=html", "--cov-report=term"]
+
+# Documentation stage
+FROM node:18-alpine as docs
+
+WORKDIR /docs
+
+# Install documentation dependencies
+RUN npm install -g @gitiles/gitiles-md
+
+# Copy documentation
+COPY docs/ ./
+
+# Build documentation
+RUN mkdir -p /docs/build && \
+    cp -r . /docs/build/
+
+# Nginx stage for serving docs
+FROM nginx:alpine as docs-server
+
+COPY --from=docs /docs/build /usr/share/nginx/html
+COPY deployment/nginx/docs.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+# Multi-architecture support
+FROM production as production-amd64
+FROM production as production-arm64
+
+# Final production image
+FROM production-${TARGETARCH:-amd64} as final
+
+# Labels for metadata
+LABEL org.opencontainers.image.title="TheoTech Moral AI Framework" \
+      org.opencontainers.image.description="Production-ready Thomistic moral reasoning system" \
+      org.opencontainers.image.vendor="TheoTech Research" \
+      org.opencontainers.image.licenses="MIT" \
+      org.opencontainers.image.source="https://github.com/your-org/theotech-moral-ai" \
+      org.opencontainers.image.documentation="https://docs.theotech.ai" \
+      org.opencontainers.image.version="1.0.0"
+
+# Final verification
+RUN python -c "import src.api.main; print('✓ TheoTech Moral AI Framework ready for deployment')"
