@@ -1,0 +1,373 @@
+theotech-moral-ai/
+├── README.md                           # Main project documentation
+├── LICENSE                             # MIT License
+├── CONTRIBUTING.md                     # Contribution guidelines
+├── CHANGELOG.md                        # Version history
+├── requirements.txt                    # Python dependencies
+├── requirements-dev.txt                # Development dependencies
+├── pyproject.toml                      # Project configuration
+├── .env.example                        # Environment variables template
+├── .gitignore                          # Git ignore patterns
+├── docker-compose.yml                  # Docker development setup
+├── Dockerfile                          # Production container
+├── Makefile                            # Common development tasks
+│
+├── src/                                # Source code
+│   ├── __init__.py
+│   ├── config/                         # Configuration management
+│   │   ├── __init__.py
+│   │   ├── settings.py                 # Application settings
+│   │   └── database.py                 # Database configuration
+│   │
+│   ├── core/                           # Core moral reasoning engines
+│   │   ├── __init__.py
+│   │   ├── virtue_tracking/            # Virtue development system
+│   │   │   ├── __init__.py
+│   │   │   ├── engine.py               # VirtueTrackingEngine
+│   │   │   ├── models.py               # Virtue data models
+│   │   │   ├── assessment.py           # Virtue assessment logic
+│   │   │   └── formation.py            # Character formation tracking
+│   │   │
+│   │   ├── moral_anxiety/              # Conscience sensitivity system
+│   │   │   ├── __init__.py
+│   │   │   ├── engine.py               # MoralAnxietySystem
+│   │   │   ├── synderesis.py           # Natural moral principles
+│   │   │   ├── conscientia.py          # Applied moral judgment
+│   │   │   ├── anxiety_generator.py    # Moral tension generation
+│   │   │   └── calibration.py          # Sensitivity calibration
+│   │   │
+│   │   ├── interfaith_dialogue/        # Cross-tradition wisdom
+│   │   │   ├── __init__.py
+│   │   │   ├── engine.py               # InterfaithDialogueEngine
+│   │   │   ├── tradition_mapping.py    # Cross-tradition concepts
+│   │   │   ├── dialogue_facilitator.py # Respectful dialogue
+│   │   │   ├── common_ground.py        # Shared wisdom identification
+│   │   │   └── cultural_sensitivity.py # Cultural awareness
+│   │   │
+│   │   ├── sacred_text/                # Hermeneutical processing
+│   │   │   ├── __init__.py
+│   │   │   ├── engine.py               # SacredTextEngine
+│   │   │   ├── four_senses.py          # Literal/allegorical/moral/anagogical
+│   │   │   ├── interpretation.py       # Text interpretation logic
+│   │   │   ├── cross_reference.py      # Passage connections
+│   │   │   └── wisdom_synthesis.py     # Practical wisdom extraction
+│   │   │
+│   │   └── decision_engine/            # Integrated moral reasoning
+│   │       ├── __init__.py
+│   │       ├── core_engine.py          # CoreMoralDecisionEngine
+│   │       ├── integration.py          # System integration
+│   │       ├── synthesis.py            # Wisdom synthesis
+│   │       ├── formation_guidance.py   # Development guidance
+│   │       └── conflict_resolution.py  # Moral conflict handling
+│   │
+│   ├── data/                           # Data access layer
+│   │   ├── __init__.py
+│   │   ├── database/                   # Database management
+│   │   │   ├── __init__.py
+│   │   │   ├── connection.py           # Connection management
+│   │   │   ├── migrations.py           # Schema migrations
+│   │   │   └── health.py               # Database health checks
+│   │   │
+│   │   ├── repositories/               # Data repositories
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py                 # BaseRepository
+│   │   │   ├── agent.py                # AgentRepository
+│   │   │   ├── virtue.py               # VirtueRepository
+│   │   │   ├── moral_decision.py       # MoralDecisionRepository
+│   │   │   ├── formation.py            # FormationRepository
+│   │   │   ├── interfaith.py           # InterfaithRepository
+│   │   │   ├── sacred_text.py          # SacredTextRepository
+│   │   │   ├── evaluation.py           # IntegratedEvaluationRepository
+│   │   │   └── performance.py          # PerformanceRepository
+│   │   │
+│   │   └── models/                     # Database models
+│   │       ├── __init__.py
+│   │       ├── agent.py                # Agent models
+│   │       ├── virtue.py               # Virtue models
+│   │       ├── moral.py                # Moral decision models
+│   │       ├── formation.py            # Formation models
+│   │       ├── interfaith.py           # Interfaith models
+│   │       ├── text.py                 # Sacred text models
+│   │       └── evaluation.py           # Evaluation models
+│   │
+│   ├── api/                            # REST API layer
+│   │   ├── __init__.py
+│   │   ├── main.py                     # FastAPI application
+│   │   ├── dependencies.py             # Dependency injection
+│   │   ├── middleware.py               # Custom middleware
+│   │   ├── auth.py                     # Authentication
+│   │   │
+│   │   ├── endpoints/                  # API endpoints
+│   │   │   ├── __init__.py
+│   │   │   ├── agents.py               # Agent management
+│   │   │   ├── decisions.py            # Moral decisions
+│   │   │   ├── virtues.py              # Virtue tracking
+│   │   │   ├── dialogue.py             # Interfaith dialogue
+│   │   │   ├── texts.py                # Sacred text processing
+│   │   │   ├── formation.py            # Formation guidance
+│   │   │   ├── health.py               # Health checks
+│   │   │   └── admin.py                # Administrative functions
+│   │   │
+│   │   ├── models/                     # API models (Pydantic)
+│   │   │   ├── __init__.py
+│   │   │   ├── requests.py             # Request models
+│   │   │   ├── responses.py            # Response models
+│   │   │   ├── common.py               # Common models
+│   │   │   └── errors.py               # Error models
+│   │   │
+│   │   └── utils/                      # API utilities
+│   │       ├── __init__.py
+│   │       ├── validation.py           # Input validation
+│   │       ├── serialization.py        # Data serialization
+│   │       └── exceptions.py           # Custom exceptions
+│   │
+│   ├── utils/                          # Shared utilities
+│   │   ├── __init__.py
+│   │   ├── logging.py                  # Logging configuration
+│   │   ├── metrics.py                  # Performance metrics
+│   │   ├── cache.py                    # Caching utilities
+│   │   ├── async_utils.py              # Async helpers
+│   │   └── datetime_utils.py           # Date/time utilities
+│   │
+│   └── client/                         # Python client library
+│       ├── __init__.py
+│       ├── client.py                   # TheoTechClient
+│       ├── async_client.py             # AsyncTheoTechClient
+│       ├── models.py                   # Client models
+│       └── exceptions.py               # Client exceptions
+│
+├── database/                           # Database files
+│   ├── schema.sql                      # Complete database schema
+│   ├── migrations/                     # Database migrations
+│   │   ├── 001_initial_schema.sql
+│   │   ├── 002_virtue_enhancements.sql
+│   │   ├── 003_interfaith_additions.sql
+│   │   └── 004_performance_indexes.sql
+│   ├── seeds/                          # Initial data
+│   │   ├── virtue_definitions.sql
+│   │   ├── moral_principles.sql
+│   │   ├── faith_traditions.sql
+│   │   └── sample_agents.sql
+│   └── backups/                        # Database backups
+│
+├── tests/                              # Test suite
+│   ├── __init__.py
+│   ├── conftest.py                     # Pytest configuration
+│   │
+│   ├── unit/                           # Unit tests
+│   │   ├── __init__.py
+│   │   ├── test_virtue_tracking.py
+│   │   ├── test_moral_anxiety.py
+│   │   ├── test_interfaith_dialogue.py
+│   │   ├── test_sacred_text.py
+│   │   ├── test_decision_engine.py
+│   │   └── test_repositories.py
+│   │
+│   ├── integration/                    # Integration tests
+│   │   ├── __init__.py
+│   │   ├── test_system_integration.py
+│   │   ├── test_database_integration.py
+│   │   ├── test_api_integration.py
+│   │   └── test_component_interaction.py
+│   │
+│   ├── api/                            # API tests
+│   │   ├── __init__.py
+│   │   ├── test_agent_endpoints.py
+│   │   ├── test_decision_endpoints.py
+│   │   ├── test_virtue_endpoints.py
+│   │   ├── test_dialogue_endpoints.py
+│   │   └── test_auth_endpoints.py
+│   │
+│   ├── performance/                    # Performance tests
+│   │   ├── __init__.py
+│   │   ├── test_load_testing.py
+│   │   ├── test_stress_testing.py
+│   │   ├── test_memory_usage.py
+│   │   └── test_response_times.py
+│   │
+│   ├── theological/                    # Theological validation
+│   │   ├── __init__.py
+│   │   ├── test_thomistic_fidelity.py
+│   │   ├── test_virtue_theory.py
+│   │   ├── test_moral_reasoning.py
+│   │   └── test_interfaith_respect.py
+│   │
+│   └── fixtures/                       # Test data
+│       ├── agents.json
+│       ├── moral_scenarios.json
+│       ├── virtue_instances.json
+│       ├── dialogue_contexts.json
+│       └── text_passages.json
+│
+├── docs/                               # Documentation
+│   ├── index.md                        # Documentation home
+│   ├── getting-started.md              # Quick start guide
+│   ├── installation.md                 # Installation instructions
+│   │
+│   ├── core-concepts/                  # Conceptual documentation
+│   │   ├── thomistic-foundation.md
+│   │   ├── virtue-theory.md
+│   │   ├── moral-psychology.md
+│   │   ├── interfaith-dialogue.md
+│   │   └── character-formation.md
+│   │
+│   ├── components/                     # Component documentation
+│   │   ├── virtue-tracking.md
+│   │   ├── moral-anxiety.md
+│   │   ├── interfaith-dialogue.md
+│   │   ├── sacred-text.md
+│   │   ├── decision-engine.md
+│   │   └── database-schema.md
+│   │
+│   ├── api/                            # API documentation
+│   │   ├── overview.md
+│   │   ├── authentication.md
+│   │   ├── agents.md
+│   │   ├── decisions.md
+│   │   ├── virtues.md
+│   │   ├── dialogue.md
+│   │   ├── texts.md
+│   │   └── errors.md
+│   │
+│   ├── guides/                         # How-to guides
+│   │   ├── deployment.md
+│   │   ├── integration.md
+│   │   ├── development.md
+│   │   ├── testing.md
+│   │   ├── monitoring.md
+│   │   └── troubleshooting.md
+│   │
+│   ├── examples/                       # Usage examples
+│   │   ├── basic-usage.md
+│   │   ├── advanced-scenarios.md
+│   │   ├── integration-examples.md
+│   │   ├── client-library.md
+│   │   └── real-world-applications.md
+│   │
+│   ├── research/                       # Research documentation
+│   │   ├── philosophical-background.md
+│   │   ├── comparative-analysis.md
+│   │   ├── validation-studies.md
+│   │   ├── performance-benchmarks.md
+│   │   └── future-research.md
+│   │
+│   └── assets/                         # Documentation assets
+│       ├── images/
+│       ├── diagrams/
+│       └── videos/
+│
+├── scripts/                            # Utility scripts
+│   ├── setup.sh                        # Environment setup
+│   ├── run_tests.sh                    # Test execution
+│   ├── deploy.sh                       # Deployment script
+│   ├── backup_db.sh                    # Database backup
+│   ├── seed_data.py                    # Data seeding
+│   ├── performance_benchmark.py        # Performance testing
+│   └── validate_theology.py            # Theological validation
+│
+├── examples/                           # Example applications
+│   ├── cli_tool/                       # Command-line interface
+│   │   ├── main.py
+│   │   ├── commands/
+│   │   └── README.md
+│   │
+│   ├── web_dashboard/                  # Web monitoring dashboard
+│   │   ├── frontend/                   # React/Vue frontend
+│   │   ├── backend/                    # Dashboard API
+│   │   └── README.md
+│   │
+│   ├── jupyter_notebooks/              # Research notebooks
+│   │   ├── virtue_analysis.ipynb
+│   │   ├── moral_reasoning_demo.ipynb
+│   │   ├── interfaith_dialogue.ipynb
+│   │   └── performance_analysis.ipynb
+│   │
+│   └── integration_samples/            # Integration examples
+│       ├── chatbot_integration.py
+│       ├── decision_support.py
+│       ├── educational_app.py
+│       └── ethics_consultation.py
+│
+├── deployment/                         # Deployment configurations
+│   ├── docker/                         # Docker configurations
+│   │   ├── Dockerfile.production
+│   │   ├── Dockerfile.development
+│   │   └── docker-compose.production.yml
+│   │
+│   ├── kubernetes/                     # Kubernetes manifests
+│   │   ├── namespace.yaml
+│   │   ├── deployment.yaml
+│   │   ├── service.yaml
+│   │   ├── ingress.yaml
+│   │   ├── configmap.yaml
+│   │   └── secrets.yaml
+│   │
+│   ├── terraform/                      # Infrastructure as code
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── outputs.tf
+│   │   └── modules/
+│   │
+│   └── ansible/                        # Configuration management
+│       ├── playbook.yml
+│       ├── inventory/
+│       └── roles/
+│
+├── monitoring/                         # Monitoring and observability
+│   ├── prometheus/                     # Metrics collection
+│   │   ├── prometheus.yml
+│   │   └── alerts.yml
+│   │
+│   ├── grafana/                        # Visualization
+│   │   ├── dashboards/
+│   │   └── datasources/
+│   │
+│   └── logs/                           # Log management
+│       ├── fluentd.conf
+│       └── logstash.conf
+│
+├── research/                           # Research materials
+│   ├── papers/                         # Academic papers
+│   │   ├── computational_thomistic_ethics.pdf
+│   │   ├── ai_virtue_development.pdf
+│   │   └── interfaith_ai_dialogue.pdf
+│   │
+│   ├── datasets/                       # Research datasets
+│   │   ├── moral_scenarios.csv
+│   │   ├── virtue_demonstrations.csv
+│   │   ├── interfaith_dialogues.json
+│   │   └── text_interpretations.json
+│   │
+│   ├── benchmarks/                     # Performance benchmarks
+│   │   ├── moral_reasoning_accuracy.json
+│   │   ├── theological_fidelity.json
+│   │   ├── response_times.json
+│   │   └── scalability_tests.json
+│   │
+│   └── validation/                     # Expert validation
+│       ├── theological_review.md
+│       ├── philosophical_assessment.md
+│       ├── interfaith_feedback.md
+│       └── technical_review.md
+│
+└── tools/                              # Development tools
+    ├── linting/                        # Code quality
+    │   ├── .pylintrc
+    │   ├── .flake8
+    │   ├── .mypy.ini
+    │   └── .black.toml
+    │
+    ├── ci_cd/                          # CI/CD pipelines
+    │   ├── github_actions/
+    │   ├── gitlab_ci/
+    │   └── jenkins/
+    │
+    ├── code_generation/                # Code generators
+    │   ├── api_generator.py
+    │   ├── model_generator.py
+    │   └── test_generator.py
+    │
+    └── analysis/                       # Code analysis
+        ├── complexity_analysis.py
+        ├── dependency_analysis.py
+        └── security_scan.py
