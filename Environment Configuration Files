@@ -1,0 +1,303 @@
+# .env.example
+# TheoTech Moral AI Framework - Environment Configuration Template
+# Copy this file to .env and customize for your environment
+
+# =====================================================
+# APPLICATION CONFIGURATION
+# =====================================================
+
+# Application Environment
+THEOTECH_ENV=development
+THEOTECH_DEBUG=true
+THEOTECH_LOG_LEVEL=INFO
+
+# API Configuration
+THEOTECH_API_HOST=0.0.0.0
+THEOTECH_API_PORT=8000
+THEOTECH_API_WORKERS=4
+THEOTECH_API_TITLE="TheoTech Moral AI API"
+THEOTECH_API_VERSION=1.0.0
+
+# =====================================================
+# DATABASE CONFIGURATION
+# =====================================================
+
+# PostgreSQL Database
+THEOTECH_DB_HOST=localhost
+THEOTECH_DB_PORT=5432
+THEOTECH_DB_NAME=theotech_production
+THEOTECH_DB_USER=theotech_user
+THEOTECH_DB_PASSWORD=change_me_in_production
+THEOTECH_DB_MIN_CONN=10
+THEOTECH_DB_MAX_CONN=100
+THEOTECH_DB_TIMEOUT=60
+THEOTECH_DB_SSL_MODE=prefer
+
+# Database Connection URL (alternative to individual settings)
+# DATABASE_URL=postgresql://user:password@host:port/database
+
+# =====================================================
+# REDIS CONFIGURATION (Optional)
+# =====================================================
+
+THEOTECH_REDIS_HOST=localhost
+THEOTECH_REDIS_PORT=6379
+THEOTECH_REDIS_DB=0
+THEOTECH_REDIS_PASSWORD=
+THEOTECH_CACHE_TTL=3600
+
+# =====================================================
+# SECURITY CONFIGURATION
+# =====================================================
+
+# JWT Configuration
+THEOTECH_JWT_SECRET=your-super-secret-jwt-key-at-least-32-characters-long
+THEOTECH_JWT_ALGORITHM=HS256
+THEOTECH_JWT_EXPIRE_MINUTES=1440
+THEOTECH_JWT_REFRESH_EXPIRE_DAYS=30
+
+# API Keys
+THEOTECH_API_KEY=your-api-key-for-external-services
+THEOTECH_ADMIN_API_KEY=admin-api-key-for-administrative-functions
+
+# Password Hashing
+THEOTECH_PASSWORD_SALT_ROUNDS=12
+
+# =====================================================
+# PERFORMANCE CONFIGURATION
+# =====================================================
+
+# Async Configuration
+THEOTECH_ASYNC_POOL_SIZE=20
+THEOTECH_MAX_CONNECTIONS=1000
+THEOTECH_KEEPALIVE_TIMEOUT=5
+
+# Request Limits
+THEOTECH_MAX_REQUEST_SIZE=10485760  # 10MB
+THEOTECH_REQUEST_TIMEOUT=300        # 5 minutes
+
+# =====================================================
+# MONITORING & OBSERVABILITY
+# =====================================================
+
+# Metrics
+THEOTECH_METRICS_ENABLED=true
+THEOTECH_METRICS_PORT=9090
+THEOTECH_PROMETHEUS_ENABLED=true
+
+# Health Checks
+THEOTECH_HEALTH_CHECK_INTERVAL=30
+THEOTECH_HEALTH_CHECK_TIMEOUT=10
+
+# Logging
+THEOTECH_LOG_FORMAT=json
+THEOTECH_LOG_FILE=/app/logs/theotech.log
+THEOTECH_LOG_ROTATION=daily
+THEOTECH_LOG_RETENTION_DAYS=30
+
+# =====================================================
+# AI MODEL CONFIGURATION
+# =====================================================
+
+# Virtue Tracking
+THEOTECH_VIRTUE_SENSITIVITY=0.5
+THEOTECH_VIRTUE_LEARNING_RATE=0.1
+THEOTECH_VIRTUE_CONFIDENCE_THRESHOLD=0.7
+
+# Moral Anxiety System
+THEOTECH_ANXIETY_SENSITIVITY=0.6
+THEOTECH_ANXIETY_CALIBRATION_FACTOR=1.0
+THEOTECH_MAX_ANXIETY_LEVEL=0.9
+
+# Decision Engine
+THEOTECH_DECISION_CONFIDENCE_THRESHOLD=0.5
+THEOTECH_DECISION_TIMEOUT=30
+THEOTECH_MAX_DECISION_COMPLEXITY=10
+
+# Formation Tracking
+THEOTECH_FORMATION_UPDATE_INTERVAL=300  # 5 minutes
+THEOTECH_FORMATION_HISTORY_RETENTION_DAYS=365
+
+# =====================================================
+# INTERFAITH DIALOGUE CONFIGURATION
+# =====================================================
+
+# Dialogue Settings
+THEOTECH_DIALOGUE_MAX_PARTICIPANTS=10
+THEOTECH_DIALOGUE_TIMEOUT=1800  # 30 minutes
+THEOTECH_CULTURAL_SENSITIVITY_LEVEL=high
+
+# Tradition Support
+THEOTECH_SUPPORTED_TRADITIONS=christianity,islam,judaism,buddhism,hinduism,philosophical
+THEOTECH_DEFAULT_TRADITION=philosophical
+
+# =====================================================
+# SACRED TEXT ENGINE CONFIGURATION
+# =====================================================
+
+# Text Processing
+THEOTECH_TEXT_MAX_LENGTH=100000
+THEOTECH_TEXT_PROCESSING_TIMEOUT=120
+THEOTECH_HERMENEUTIC_DEPTH=comprehensive
+
+# Text Corpora
+THEOTECH_BIBLE_CORPUS_PATH=/app/data/corpora/bible
+THEOTECH_QURAN_CORPUS_PATH=/app/data/corpora/quran
+THEOTECH_TORAH_CORPUS_PATH=/app/data/corpora/torah
+
+# =====================================================
+# EXTERNAL SERVICES
+# =====================================================
+
+# Email Service (for notifications)
+THEOTECH_SMTP_HOST=smtp.example.com
+THEOTECH_SMTP_PORT=587
+THEOTECH_SMTP_USER=notifications@theotech.ai
+THEOTECH_SMTP_PASSWORD=smtp_password
+THEOTECH_SMTP_TLS=true
+
+# Message Queue (optional)
+THEOTECH_RABBITMQ_URL=amqp://guest:guest@localhost:5672/
+THEOTECH_CELERY_BROKER_URL=redis://localhost:6379/1
+
+# =====================================================
+# DEVELOPMENT CONFIGURATION
+# =====================================================
+
+# Development Tools
+THEOTECH_AUTO_RELOAD=true
+THEOTECH_SHOW_SQL_QUERIES=false
+THEOTECH_ENABLE_DEBUGGER=true
+
+# Testing
+THEOTECH_TEST_DB_NAME=theotech_test
+THEOTECH_TEST_REDIS_DB=1
+
+# =====================================================
+# PRODUCTION OVERRIDES
+# =====================================================
+
+# Production Security
+# THEOTECH_DEBUG=false
+# THEOTECH_LOG_LEVEL=WARNING
+# THEOTECH_ENABLE_DEBUGGER=false
+# THEOTECH_AUTO_RELOAD=false
+
+# Production Performance
+# THEOTECH_API_WORKERS=8
+# THEOTECH_DB_MIN_CONN=20
+# THEOTECH_DB_MAX_CONN=200
+# THEOTECH_ASYNC_POOL_SIZE=50
+
+# Production Monitoring
+# THEOTECH_SENTRY_DSN=https://your-sentry-dsn
+# THEOTECH_DATADOG_API_KEY=your-datadog-api-key
+
+# =====================================================
+# DOCKER CONFIGURATION
+# =====================================================
+
+# Docker Compose Override
+COMPOSE_PROJECT_NAME=theotech
+COMPOSE_FILE=docker-compose.yml
+DOCKER_BUILDKIT=1
+
+# Container Configuration
+CONTAINER_REGISTRY=docker.io/theotech
+IMAGE_TAG=latest
+
+# =====================================================
+# DEPLOYMENT CONFIGURATION
+# =====================================================
+
+# Kubernetes
+K8S_NAMESPACE=theotech-production
+K8S_REPLICAS=3
+K8S_RESOURCE_LIMITS_CPU=1000m
+K8S_RESOURCE_LIMITS_MEMORY=2Gi
+K8S_RESOURCE_REQUESTS_CPU=500m
+K8S_RESOURCE_REQUESTS_MEMORY=1Gi
+
+# Load Balancer
+LB_HEALTH_CHECK_PATH=/health
+LB_HEALTH_CHECK_INTERVAL=30
+LB_HEALTH_CHECK_TIMEOUT=5
+
+# =====================================================
+# BACKUP & DISASTER RECOVERY
+# =====================================================
+
+# Backup Configuration
+THEOTECH_BACKUP_SCHEDULE="0 2 * * *"  # Daily at 2 AM
+THEOTECH_BACKUP_RETENTION_DAYS=30
+THEOTECH_BACKUP_STORAGE_PATH=/app/backups
+THEOTECH_BACKUP_COMPRESSION=gzip
+
+# AWS S3 Backup (optional)
+# AWS_ACCESS_KEY_ID=your-aws-access-key
+# AWS_SECRET_ACCESS_KEY=your-aws-secret-key
+# AWS_S3_BACKUP_BUCKET=theotech-backups
+# AWS_REGION=us-east-1
+
+# =====================================================
+# CUSTOM CONFIGURATION
+# =====================================================
+
+# Organization Settings
+THEOTECH_ORGANIZATION_NAME="Your Organization"
+THEOTECH_ADMIN_EMAIL=admin@your-organization.com
+THEOTECH_SUPPORT_EMAIL=support@your-organization.com
+
+# Feature Flags
+THEOTECH_FEATURE_INTERFAITH_DIALOGUE=true
+THEOTECH_FEATURE_SACRED_TEXT_ENGINE=true
+THEOTECH_FEATURE_ADVANCED_ANALYTICS=true
+THEOTECH_FEATURE_REAL_TIME_FORMATION=true
+
+# Academic Integration
+THEOTECH_ACADEMIC_MODE=true
+THEOTECH_CITATION_STYLE=chicago
+THEOTECH_THEOLOGICAL_VALIDATION=strict
+
+# =====================================================
+# ENVIRONMENT-SPECIFIC FILES
+# =====================================================
+
+# .env.development
+THEOTECH_ENV=development
+THEOTECH_DEBUG=true
+THEOTECH_LOG_LEVEL=DEBUG
+THEOTECH_DB_NAME=theotech_development
+THEOTECH_AUTO_RELOAD=true
+THEOTECH_SHOW_SQL_QUERIES=true
+THEOTECH_API_WORKERS=1
+
+# .env.staging
+THEOTECH_ENV=staging
+THEOTECH_DEBUG=false
+THEOTECH_LOG_LEVEL=INFO
+THEOTECH_DB_NAME=theotech_staging
+THEOTECH_AUTO_RELOAD=false
+THEOTECH_API_WORKERS=2
+THEOTECH_METRICS_ENABLED=true
+
+# .env.production
+THEOTECH_ENV=production
+THEOTECH_DEBUG=false
+THEOTECH_LOG_LEVEL=WARNING
+THEOTECH_DB_NAME=theotech_production
+THEOTECH_AUTO_RELOAD=false
+THEOTECH_API_WORKERS=8
+THEOTECH_METRICS_ENABLED=true
+THEOTECH_HEALTH_CHECK_INTERVAL=15
+THEOTECH_DB_MIN_CONN=50
+THEOTECH_DB_MAX_CONN=200
+
+# .env.test
+THEOTECH_ENV=test
+THEOTECH_DEBUG=true
+THEOTECH_LOG_LEVEL=ERROR
+THEOTECH_DB_NAME=theotech_test
+THEOTECH_REDIS_DB=1
+THEOTECH_CACHE_TTL=60
+THEOTECH_TEST_MODE=true
