@@ -1,0 +1,585 @@
+# Contributing to TheoTech Moral AI Framework
+
+Thank you for your interest in contributing to the TheoTech Moral AI Framework! This project represents a groundbreaking implementation of Thomistic moral psychology in computational form, and we welcome contributions from philosophers, theologians, AI researchers, and software engineers.
+
+## 🎯 Project Vision
+
+This framework aims to create AI systems with authentic moral sensitivity based on classical virtue theory and natural law principles, while respectfully integrating wisdom from multiple traditions. Our goal is to advance AI ethics through rigorous philosophical foundations and practical applications.
+
+## 🤝 How to Contribute
+
+### Types of Contributions Welcome
+
+We welcome several types of contributions:
+
+#### 🔬 **Research Contributions**
+- Philosophical analysis and validation
+- Cross-tradition wisdom mapping
+- Theological accuracy verification
+- Empirical studies and benchmarks
+
+#### 💻 **Technical Contributions** 
+- Code improvements and bug fixes
+- Performance optimizations
+- New features and capabilities
+- Documentation enhancements
+
+#### 📚 **Documentation Contributions**
+- API documentation
+- Tutorial creation
+- Example applications
+- Philosophical explanations
+
+#### 🌍 **Cultural Contributions**
+- Interfaith dialogue expertise
+- Cultural sensitivity guidance
+- Translation assistance
+- Tradition-specific insights
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Python 3.11+**
+- **PostgreSQL 15+**
+- **Git**
+- **Docker** (recommended for development)
+
+### Development Setup
+
+1. **Fork the repository**
+   ```bash
+   git clone https://github.com/your-username/theotech-moral-ai.git
+   cd theotech-moral-ai
+   ```
+
+2. **Set up development environment**
+   ```bash
+   make setup  # Automated setup
+   # OR manually:
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements-dev.txt
+   ```
+
+3. **Configure environment**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your configuration
+   ```
+
+4. **Set up database**
+   ```bash
+   make setup-db
+   # OR manually:
+   createdb theotech_development
+   psql theotech_development < database/schema.sql
+   ```
+
+5. **Verify setup**
+   ```bash
+   make test
+   make dev  # Start development server
+   ```
+
+## 📋 Development Guidelines
+
+### Code Standards
+
+#### Python Code Style
+- **Black** for code formatting
+- **isort** for import sorting  
+- **flake8** for linting
+- **mypy** for type checking
+- **pytest** for testing
+
+```bash
+# Format code
+make format
+
+# Check code quality
+make lint
+
+# Run tests
+make test
+```
+
+#### Philosophical Standards
+
+##### Thomistic Fidelity
+- All moral implementations must be grounded in authentic Thomistic sources
+- Include proper citations from *Summa Theologiae*, *De Veritate*, etc.
+- Maintain distinction between synderesis and conscientia
+- Preserve natural law foundation
+
+**Example:**
+```python
+def apply_synderesis_principle(self, principle_id: str, scenario: MoralScenario) -> MoralEvaluation:
+    """
+    Apply synderesis principle to moral scenario.
+    
+    Based on Aquinas's Summa Theologiae I-II, q. 94, a. 2:
+    "The first principle of natural law is that good is to be done and evil avoided."
+    
+    Args:
+        principle_id: The synderesis principle identifier
+        scenario: The moral scenario under consideration
+        
+    Returns:
+        MoralEvaluation containing judgment and reasoning
+        
+    Raises:
+        ValueError: If principle or scenario is invalid
+    """
+    # Implementation with Thomistic accuracy
+```
+
+##### Multi-Faith Sensitivity
+- Respect different religious and philosophical traditions
+- Avoid imposing particular theological views in cross-cultural components
+- Provide clear documentation of philosophical assumptions
+- Enable interfaith dialogue while maintaining theoretical coherence
+
+##### Documentation Requirements
+- Include philosophical rationale for implementations
+- Cite classical sources appropriately
+- Explain theological concepts for technical audience
+- Provide examples grounded in tradition
+
+### Testing Standards
+
+#### Comprehensive Test Coverage
+```python
+# Example test structure
+def test_virtue_development_thomistic_accuracy():
+    """Test that virtue development follows Thomistic principles"""
+    agent = create_test_agent()
+    
+    # Test habit formation progression (ST I-II, q. 51)
+    virtue_instances = generate_virtue_practice_sequence(
+        virtue_type="prudence",
+        instances=100,
+        consistency=0.8
+    )
+    
+    for instance in virtue_instances:
+        agent.demonstrate_virtue(instance)
+    
+    final_assessment = agent.assess_virtue("prudence")
+    
+    # Verify Thomistic progression: beginning -> progress -> perfection
+    assert final_assessment.formation_stage in ["progress", "perfection"]
+    assert final_assessment.strength_level > 0.7
+    assert final_assessment.habit_formation_score > 0.6
+```
+
+#### Test Categories
+- **Unit Tests**: Individual component functionality
+- **Integration Tests**: System interaction testing
+- **Theological Tests**: Expert validation of moral reasoning
+- **Performance Tests**: Load and response time testing
+- **API Tests**: Complete endpoint validation
+
+### Commit Message Format
+
+Use conventional commit format:
+
+```
+type(scope): description
+
+[optional body]
+
+[optional footer]
+```
+
+**Types:**
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `style`: Code formatting
+- `refactor`: Code restructuring
+- `test`: Adding tests
+- `chore`: Build process or auxiliary tools
+
+**Examples:**
+```bash
+feat(virtue): implement Thomistic habit formation tracking
+
+Add progressive virtue development monitoring based on Summa 
+Theologiae I-II, q. 51. Tracks habit formation through repeated 
+acts and measures strength according to classical criteria.
+
+Closes #123
+
+fix(anxiety): correct moral tension calibration for minor decisions
+
+The anxiety generator was producing excessive tension for minor 
+moral decisions. Adjusted calibration to match Thomistic 
+proportionality principles.
+
+docs(interfaith): add Islamic virtue mapping documentation
+
+Comprehensive documentation of how Islamic virtues (Akhlaq) 
+map to Thomistic virtue categories, with scholarly sources 
+and cultural sensitivity notes.
+```
+
+## 🔄 Contribution Workflow
+
+### 1. Issue Creation
+- **Check existing issues** to avoid duplicates
+- **Use issue templates** for bugs, features, or research questions
+- **Provide context** including philosophical background when relevant
+- **Tag appropriately** (bug, enhancement, research, documentation, etc.)
+
+### 2. Development Process
+1. **Create feature branch**
+   ```bash
+   git checkout -b feature/virtue-assessment-enhancement
+   ```
+
+2. **Implement changes**
+   - Follow coding standards
+   - Write comprehensive tests
+   - Update documentation
+   - Ensure theological accuracy
+
+3. **Test thoroughly**
+   ```bash
+   make test           # Run all tests
+   make lint           # Check code quality
+   make validate-theology  # Verify philosophical accuracy
+   ```
+
+4. **Commit changes**
+   ```bash
+   git add .
+   git commit -m "feat(virtue): enhance assessment algorithm with Thomistic progression"
+   ```
+
+### 3. Pull Request Process
+
+1. **Create pull request**
+   - Use descriptive title
+   - Fill out PR template completely
+   - Link related issues
+   - Add appropriate labels
+
+2. **PR Requirements**
+   - [ ] All tests pass
+   - [ ] Code follows style guidelines
+   - [ ] Documentation updated
+   - [ ] Theological accuracy verified
+   - [ ] Performance impact assessed
+
+3. **Review Process**
+   - **Code Review**: Technical accuracy and style
+   - **Philosophical Review**: Thomistic fidelity
+   - **Cultural Review**: Interfaith sensitivity (when applicable)
+   - **Security Review**: Security implications
+
+4. **Addressing Feedback**
+   - Respond to all review comments
+   - Make requested changes
+   - Update tests as needed
+   - Re-request review when ready
+
+## 🏗️ Architecture Guidelines
+
+### Component Structure
+
+Each major component should follow this structure:
+
+```
+component_name/
+├── __init__.py
+├── engine.py          # Main engine class
+├── models.py          # Data models
+├── processors/        # Specific processors
+├── utils.py           # Utility functions
+└── tests/
+    ├── test_engine.py
+    ├── test_models.py
+    └── test_integration.py
+```
+
+### API Design Principles
+
+1. **RESTful Design**: Follow REST conventions
+2. **Comprehensive Validation**: Use Pydantic models
+3. **Error Handling**: Provide detailed error messages
+4. **Documentation**: Auto-generated OpenAPI specs
+5. **Versioning**: Support API versioning
+
+### Database Design Principles
+
+1. **Normalization**: Proper database normalization
+2. **Indexing**: Performance-optimized indexes
+3. **Migrations**: Version-controlled schema changes
+4. **Constraints**: Data integrity enforcement
+5. **Performance**: Query optimization
+
+## 🧪 Testing Philosophy
+
+### Test-Driven Development
+
+We encourage TDD, especially for complex moral reasoning:
+
+```python
+def test_moral_conflict_resolution_thomistic_approach():
+    """Test moral conflict resolution using Thomistic principles"""
+    # Arrange: Create moral dilemma with competing goods
+    scenario = MoralScenario(
+        description="Truth-telling vs. preventing harm",
+        competing_values=["honesty", "compassion"],
+        context={"relationship": "close_friend", "harm_severity": "moderate"}
+    )
+    
+    # Act: Resolve using Thomistic framework
+    resolution = decision_engine.resolve_moral_conflict(scenario)
+    
+    # Assert: Verify Thomistic reasoning applied
+    assert resolution.approach == "principle_of_double_effect"
+    assert "lesser_of_evils" not in resolution.reasoning
+    assert resolution.maintains_moral_integrity == True
+```
+
+### Theological Validation Tests
+
+Create tests that can be validated by theological experts:
+
+```python
+def test_virtue_progression_matches_thomistic_stages():
+    """Verify virtue development follows ST I-II, q. 51"""
+    agent = create_agent_with_formation_level(0.2)  # Beginner
+    
+    # Practice virtue consistently
+    for _ in range(50):
+        agent.practice_virtue("temperance", context="daily_choices")
+    
+    assessment = agent.assess_virtue_development("temperance")
+    
+    # Should show progression through Thomistic stages
+    assert assessment.shows_inclination_to_virtue == True
+    assert assessment.demonstrates_choice_facilitation == True
+    assert assessment.formation_stage in ["progress", "perfected"]
+```
+
+## 📖 Documentation Standards
+
+### Code Documentation
+
+```python
+class VirtueTrackingEngine:
+    """
+    Tracks virtue development according to Thomistic virtue theory.
+    
+    Based on Aquinas's analysis in Summa Theologiae II-I, qq. 49-67,
+    this engine monitors habit formation through repeated acts and
+    measures virtue strength according to classical criteria.
+    
+    Attributes:
+        virtue_registry: Repository of virtue definitions
+        habit_analyzer: Analyzes habit formation patterns
+        assessment_engine: Evaluates virtue development
+        
+    Example:
+        >>> engine = VirtueTrackingEngine()
+        >>> assessment = engine.assess_virtue(agent_id, "prudence")
+        >>> print(f"Prudence level: {assessment.strength_level:.2f}")
+    """
+```
+
+### API Documentation
+
+All endpoints must include:
+- Clear descriptions
+- Parameter documentation
+- Response schemas
+- Example requests/responses
+- Error conditions
+
+### Philosophical Documentation
+
+Include philosophical context for moral implementations:
+
+```markdown
+## Thomistic Foundation
+
+This implementation follows Aquinas's analysis of conscience in 
+*Summa Theologiae* I, q. 79, a. 12-13:
+
+- **Synderesis**: Natural habit containing first principles of moral action
+- **Conscientia**: Applied judgment of particular acts
+
+The system maintains the crucial distinction between these levels
+while enabling dynamic moral reasoning.
+```
+
+## 🌍 Cultural Sensitivity
+
+### Interfaith Contributions
+
+When contributing to interfaith components:
+
+1. **Research thoroughly** - Understand traditions authentically
+2. **Consult experts** - Work with tradition practitioners
+3. **Avoid stereotypes** - Present nuanced, accurate views
+4. **Respect boundaries** - Honor what each tradition considers sacred
+5. **Document sources** - Cite authoritative tradition sources
+
+### Cultural Review Process
+
+Interfaith-related contributions require additional review:
+
+1. **Technical Review**: Code quality and functionality
+2. **Theological Review**: Accuracy within each tradition
+3. **Cultural Sensitivity Review**: Respectful representation
+4. **Inter-tradition Review**: Appropriate cross-tradition mapping
+
+## 🎓 Academic Collaboration
+
+### Research Partnerships
+
+We actively seek collaboration with:
+- Philosophy and theology departments
+- AI ethics research groups
+- Interfaith organizations
+- Cultural institutions
+
+### Publication Opportunities
+
+Contributors may be included in:
+- Academic papers
+- Conference presentations
+- Research collaborations
+- Book chapters
+
+### Citation and Attribution
+
+- All contributions are attributed in commit history
+- Significant contributions acknowledged in documentation
+- Research collaborators included in academic publications
+- Cultural consultants credited appropriately
+
+## 🔒 Security Guidelines
+
+### Security Requirements
+
+- **No hardcoded secrets** in code
+- **Environment variables** for configuration
+- **Input validation** for all user data
+- **SQL injection prevention**
+- **Authentication** for sensitive operations
+
+### Reporting Security Issues
+
+For security vulnerabilities:
+1. **Do NOT** create public issues
+2. **Email** security concerns privately
+3. **Provide** detailed reproduction steps
+4. **Wait** for response before disclosure
+
+## 📊 Performance Guidelines
+
+### Performance Standards
+
+- API responses < 200ms for simple operations
+- Database queries optimized with proper indexing
+- Memory usage monitored and bounded
+- Concurrent request handling
+
+### Performance Testing
+
+```python
+def test_decision_engine_performance():
+    """Ensure decision engine meets performance requirements"""
+    scenarios = generate_test_scenarios(1000)
+    
+    start_time = time.time()
+    for scenario in scenarios:
+        decision_engine.evaluate_moral_decision(scenario)
+    end_time = time.time()
+    
+    avg_time = (end_time - start_time) / len(scenarios)
+    assert avg_time < 0.2  # 200ms requirement
+```
+
+## 🎉 Recognition
+
+### Contributor Recognition
+
+- Contributors listed in CONTRIBUTORS.md
+- Major contributors acknowledged in documentation
+- Research collaborators included in academic work
+- Community highlights in project updates
+
+### Code of Conduct
+
+We are committed to providing a welcoming and inclusive environment. Please read our [Code of Conduct](CODE_OF_CONDUCT.md) for details on our community standards.
+
+## 📞 Getting Help
+
+### Community Support
+
+- **GitHub Discussions**: General questions and ideas
+- **Issues**: Bug reports and feature requests
+- **Email**: Direct contact for sensitive matters
+- **Academic**: Research collaboration inquiries
+
+### Development Help
+
+- Check existing documentation first
+- Search closed issues for solutions
+- Ask specific questions with context
+- Provide minimal reproduction examples
+
+## 🚀 Future Directions
+
+### Roadmap Contributions
+
+We welcome input on:
+- Feature prioritization
+- Research directions
+- Integration opportunities
+- Community initiatives
+
+### Long-term Vision
+
+Help us build toward:
+- Production deployments in educational settings
+- Integration with major AI platforms
+- Academic validation studies
+- Global interfaith dialogue support
+
+---
+
+## 📝 Quick Reference
+
+### Common Commands
+```bash
+make setup          # Initial setup
+make dev            # Start development server
+make test           # Run all tests
+make lint           # Check code quality
+make format         # Format code
+make docs           # Build documentation
+```
+
+### Project Structure
+```
+src/core/           # Core moral reasoning engines
+src/api/            # REST API layer
+src/data/           # Database and repositories
+tests/              # Comprehensive test suite
+docs/               # Documentation
+database/           # Schema and migrations
+```
+
+Thank you for contributing to the advancement of moral AI! Together, we're building technology that can genuinely understand and apply moral wisdom.
+
+---
+
+*"The good of the intellect is truth, and the good of the will is the good itself."* - Thomas Aquinas
+
+For questions about contributing, please open a GitHub Discussion or contact the maintainers directly.
